@@ -24,4 +24,4 @@ npm install
 npm start
 ````
 # License
-``` ISC ````
+ISC
