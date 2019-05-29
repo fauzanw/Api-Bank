@@ -11,7 +11,7 @@ module.exports = require("knex")({
 		host: 'localhost',
 		user: 'USER_DATABASE_ANDA',
 		password: 'PASSWORD_DATABASE_ANDA',
-		database: 'NAMA_DATABASE_ANDA'
+		database: 'bank'
 	}
 })
 ```
