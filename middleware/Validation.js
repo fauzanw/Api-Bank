@@ -40,3 +40,14 @@ exports.transferSaldo = (req, res, next) => {
 	}
 	return next();
 }
+
+exports.buatBank = (req, res, next) => {
+	let {nama_bank, biaya_transfer_beda_bank} = req.body
+	if(!nama_bank || !biaya_transfer_beda_bank) {
+		return Res.bad("Invalid Requests");
+	}else {
+		if(isNaN(biaya_transfer_beda_bank)) {
+			return Res.bad("Biaya Transfer Beda Bank Harus Format Angka")
+		}
+	}
+}
