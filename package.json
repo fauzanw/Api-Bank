@@ -1,0 +1,35 @@
+{
+  "name": "bankapi",
+  "version": "1.0.0",
+  "description": "Restful Api Bank",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MhmmdFauzan/Api-Bank.git"
+  },
+  "keywords": [
+    "apiBank"
+  ],
+  "author": "Muhammad Fauzan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MhmmdFauzan/Api-Bank/issues"
+  },
+  "homepage": "https://github.com/MhmmdFauzan/Api-Bank#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.0",
+    "helmet": "^3.18.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.16.5",
+    "md5": "^2.2.1",
+    "moment": "^2.24.0",
+    "mysql": "^2.17.1",
+    "rupiah-format": "^1.0.0",
+    "validator": "^11.0.0"
+  }
+}
