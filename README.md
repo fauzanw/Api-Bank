@@ -15,14 +15,19 @@ module.exports = require("knex")({
 	}
 })
 ```
-- Impor file sql/bank.sql ke database anda
+- Impor file /sql/bank.sql ke database anda
 - Install semua package
 ```sh
 npm install
 ```
-- Jalankan Server
+# Requirement Package
+- Knex.js
+- Express.js
+- Body-Parser
+- Helmet
+# Jalankan Server
 ```sh
 npm start
-````
+```
 # License
 ISC

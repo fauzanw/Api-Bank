@@ -17,6 +17,8 @@ let BaseUrl            = "/api/v1"
 app.use(helmet());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+// Middleware
 app.use((request, response, next) => {
   Model = require("./models/Model");
   Res   = require("./controllers/ResponseController")
