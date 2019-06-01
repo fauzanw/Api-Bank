@@ -31,3 +31,7 @@ npm start
 ```
 # License
 ISC
+
+# kritik & saran
+http://facebook.com/dominic404
+http://instagram.com/fauzzanw
