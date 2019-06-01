@@ -18,8 +18,10 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use((request, response, next) => {
-  req = request;
-  res = response;
+  Model = require("./models/Model");
+  Res   = require("./controllers/ResponseController")
+  req   = request;
+  res   = response;
   next();
 });
 
@@ -35,6 +37,7 @@ app.post(BaseUrl + '/transfer/saldo',Validation.transferSaldo, TransferControlle
 app.get(BaseUrl + '/bank/:id_bank', BankController.getBankById);
 app.post(BaseUrl + '/bank/buat', BankController.buatBank);
 app.get(BaseUrl + '/bank/', BankController.getAllBank)
+
 
 app.listen(1337, () => {
 	console.log("Server running on port : 1337")

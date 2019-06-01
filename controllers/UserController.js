@@ -1,58 +1,57 @@
-let Model = require("../models/userModel"); // User Model
-let Res   = require("../controllers/ResponseController"); // Response Controller
-
-exports.registerUser = (req, res) => {
+exports.registerUser = async () => {
 	let { nama_lengkap, email, alamat, pin } = req.body
-	Model.registerUser(nama_lengkap, email, alamat, pin)
-	.then(row => {
-		if(row == "Email sudah terdaftar") {
-		 Res.bad("Email ini sudah terdaftar")
+	const checkUser = await Model.find("user", {email: email})
+	if(checkUser[0]) {
+		Res.bad("Email ini sudah terdaftar")
+	}else {
+		const no_rek = Math.floor((Math.random() * 999999999) + 0)
+		const register = await Model.insert("user", {
+			nama_lengkap: nama_lengkap, 
+			email: email, 
+			alamat: alamat,
+			saldo: 0,
+			no_rekening: no_rek,
+			pin: pin,
+			id_bank: 2
+		});
+		if(register) {
+			Res.success("Berhasil daftar", {no_rekening: no_rek, id_bank: 2});
 		}else {
-		 User.findOneUserAfterRegister(email)
-		 .then(response => {
-		 	  Res.success("Berhasil mendaftar", response)
-		 })
+			console.log(register);
+			Res.bad("Gagal mendaftar")
 		}
-	})
-	.catch(err => {
-		 console.log(err);
-		 Res.bad("Gagal mendaftar");
-	})
+	}
 }
 
 
-exports.loginUser = (req, res) => {
-	let {email, pin} = req.body
-	Model.loginUser(email, pin)
-	.then(response => {
-		if(response == "Email tidak ditemukan") {
-			Res.bad("Email ini tidak terdaftar");
+exports.loginUser = async () => {
+	const {email, pin} = req.body
+	const checkUser = await Model.find("user", {email: email})
+	if(checkUser[0]) {
+	 if(checkUser[0].pin == pin) {
+			Res.success("Berhasil login")
 		}else {
-			if(response == "pin salah") {
-				Res.bad("Pin anda salah")
-			}else {
-				Res.success("Berhasil login")
-			}
+			Res.bad("Pin salah")
 		}
-	})
-	.catch(err => {
-		console.log(err);
-		Res.fail();
-	})
+	}else {
+		Res.bad("Akun ini tidak ditemukan")
+	}
 }
 
-exports.profileUser = (req, res) => {
+exports.profileUser = async (req, res) => {
 	let {user_id} = req.params
-  Model.findOneUserById(user_id)
-	.then(row => {
-		if(row == "user tidak ditemukan") {
-			Res.bad("User tidak ditemukan")
-		}else {
-			Res.success("User berhasil ditemukan", row)
-		}
-	})
-	.catch(err => {
-		console.log(err);
-		Res.fail()
-	})
+  const checkUser = await Model.find("user", {id: user_id})
+  if(checkUser[0]) {
+     const data = {
+        nama_lengkap: checkUser[0].nama_lengkap,
+        email: checkUser[0].email,
+        alamat: checkUser[0].alamat,
+        saldo: checkUser[0].saldo,
+        no_rek: checkUser[0].no_rekening,
+        id_bank: checkUser[0].id_bank
+     }
+     Res.success("Berhasil mengumpulkan data user", data)
+  }else {
+     Res.bad("User ini tidak ditemukan")
+  }
 }

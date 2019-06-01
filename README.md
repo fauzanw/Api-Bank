@@ -15,6 +15,7 @@ module.exports = require("knex")({
 	}
 })
 ```
+- Impor file sql/bank.sql ke database anda
 - Install semua package
 ```sh
 npm install
