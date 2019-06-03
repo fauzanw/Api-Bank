@@ -1,4 +1,3 @@
-const FormatRupiah  = require("rupiah-format");
 exports.transferSaldo = async () => {
 	let {from_no_rek, to_no_rek, pin, nominal} = req.body
   if(nominal < 10000) {
