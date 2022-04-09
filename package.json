@@ -27,7 +27,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.16.5",
     "md5": "^2.2.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mysql": "^2.17.1",
     "rupiah-format": "^1.0.0",
     "validator": "^11.0.0"
